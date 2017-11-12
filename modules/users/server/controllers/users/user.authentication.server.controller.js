@@ -44,7 +44,6 @@ exports.signup = function(req, res) {
   user.save().then(function() {
     req.login(user, function(err) {
       if (err){
-        console.log(err)
         res.status(400).send({
           message: errorHandler.getErrorMessage(err)
         });
@@ -53,7 +52,6 @@ exports.signup = function(req, res) {
       }
     });
   }).catch(function(err) {
-    console.log(err);
     res.status(400).send({
       message: errorHandler.getErrorMessage(err)
     });
