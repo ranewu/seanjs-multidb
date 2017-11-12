@@ -137,7 +137,7 @@ exports.userByID = function(req, res, next, id) {
       data.createdAt = user.createdAt;
 
       req.model = data;
-      next();
+      return next();
     }
   }).catch(function(err) {
     return next(err);

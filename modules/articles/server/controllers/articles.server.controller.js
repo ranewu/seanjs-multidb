@@ -131,7 +131,7 @@ exports.articleByID = function(req, res, next, id) {
       });
     } else {
       req.article = article;
-      next();
+      return next();
     }
   }).catch(function(err) {
     return next(err);
