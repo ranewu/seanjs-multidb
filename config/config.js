@@ -102,6 +102,17 @@ var initGlobalConfigFolders = function(config, assets) {
 };
 
 /**
+ * Initialize model files for extra dbs
+ */
+var initExtraDbModelFiles = function(config, assets){
+  var extra_db_models = {};
+  for (var db_name in config.extra_dbs){
+    extra_db_models[db_name] = getGlobbedPaths(assets.server.extra_db_models.replace("<db_name>", db_name));
+  }
+  return extra_db_models;
+};
+
+/**
  * Initialize global configuration files
  */
 var initGlobalConfigFiles = function(config, assets) {
@@ -113,6 +124,10 @@ var initGlobalConfigFiles = function(config, assets) {
 
   // Setting Globbed model files
   config.files.server.models = getGlobbedPaths(assets.server.models);
+
+  // Setting Gblobbed model files for extra dbs
+  config.files.server.extra_db_models = initExtraDbModelFiles(config, assets); 
+  console.log(config.files.server.extra_db_models);
 
   // Setting Globbed route files
   config.files.server.routes = getGlobbedPaths(assets.server.routes);
