@@ -8,7 +8,7 @@ var _ = require('lodash'),
   async = require('async'),
   path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 

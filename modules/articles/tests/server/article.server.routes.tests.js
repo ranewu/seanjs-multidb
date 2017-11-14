@@ -3,8 +3,8 @@
 var should = require('should'),
   request = require('supertest'),
   path = require('path'),
-  sequelize = require(path.resolve('./config/lib/sequelize-connect')),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  sequelize = require(path.resolve('./config/lib/sequelize-pool')),
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   Article = db.article,
   User = db.user,
   express = require(path.resolve('./config/lib/express'));

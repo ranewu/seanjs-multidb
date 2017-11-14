@@ -9,7 +9,7 @@ var path = require('path'),
   nodemailer = require('nodemailer'),
   async = require('async'),
   crypto = require('crypto'),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);

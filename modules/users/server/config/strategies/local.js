@@ -7,7 +7,7 @@ var
   path = require('path'),
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 module.exports = function() {

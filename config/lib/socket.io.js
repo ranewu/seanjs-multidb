@@ -13,7 +13,7 @@ var config = require('../config'),
   RedisStore = require('connect-redis')(session);
 
 // Define the Socket.io configuration method
-module.exports = function(app, db) {
+module.exports = function(app) {
   var server;
   if (config.secure && config.secure.ssl === true) {
     // Load SSL key and certificate

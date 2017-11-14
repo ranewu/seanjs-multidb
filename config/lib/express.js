@@ -137,7 +137,7 @@ module.exports.initViewEngine = function(app) {
 /**
  * Configure Express session
  */
-module.exports.initSession = function(app, db) {
+module.exports.initSession = function(app) {
     winston.info('Initializing Session...');
 
     app.use(session({
@@ -248,10 +248,10 @@ module.exports.initErrorRoutes = function(app) {
 /**
  * Configure Socket.io
  */
-module.exports.configureSocketIO = function(app, db) {
+module.exports.configureSocketIO = function(app) {
     winston.info('Initializing Socket.io...');
     // Load the Socket.io configuration
-    var server = require('./socket.io')(app, db);
+    var server = require('./socket.io')(app);
 
     // Return server object
     return server;
@@ -260,7 +260,7 @@ module.exports.configureSocketIO = function(app, db) {
 /**
  * Initialize the Express application
  */
-module.exports.init = function(db) {
+module.exports.init = function() {
     // Initialize express app
     var app = express();
 
@@ -274,7 +274,7 @@ module.exports.init = function(db) {
     this.initViewEngine(app);
 
     // Initialize Express session
-    this.initSession(app, db);
+    this.initSession(app);
 
     // Initialize Modules configuration
     this.initModulesConfiguration(app);
@@ -295,7 +295,7 @@ module.exports.init = function(db) {
     this.initErrorRoutes(app);
 
     // Configure Socket.io
-    app = this.configureSocketIO(app, db);
+    app = this.configureSocketIO(app);
     //app =  http.createServer(app);
 
     return app;

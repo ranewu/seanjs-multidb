@@ -6,13 +6,13 @@
 var config = require('../config'),
   express = require('./express'),
   chalk = require('chalk'),
-  sequelize = require('./sequelize-connect'),
+  sequelize = require('./sequelize-pool'),
   winston = require('./winston');
 
 
 module.exports.init = function init(callback) {
-  var app = express.init(sequelize);
-  if (callback) callback(app, sequelize, config);
+  var app = express.init();
+  if (callback) callback(app, config);
 };
 
 module.exports.start = function start(callback) {
@@ -20,7 +20,7 @@ module.exports.start = function start(callback) {
 
   var _this = this;
 
-  _this.init(function(app, db, config) {
+  _this.init(function(app, config) {
 
     // Start the app by listening on <port>
     app.listen(config.port, function() {
@@ -49,7 +49,7 @@ module.exports.start = function start(callback) {
         winston.warn('Missing reCaptcha Secret in env!');
       }
 
-      if (callback) callback(app, db, config);
+      if (callback) callback(app, config);
     });
 
   });

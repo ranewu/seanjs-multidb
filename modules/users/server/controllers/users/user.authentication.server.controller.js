@@ -9,7 +9,7 @@ var path = require('path'),
   async = require('async'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   passport = require('passport'),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 // URLs for which user can't be redirected on signin

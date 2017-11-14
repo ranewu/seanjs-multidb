@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: {
-          args: [1, 250],
+          args: [1, 250], 
           msg: "Article title must be between 1 and 250 characters in length"
         },
       }

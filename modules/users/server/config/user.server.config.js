@@ -7,7 +7,7 @@ var
   path = require('path'),
   passport = require('passport'),
   config = require(path.resolve('./config/config')),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 /**

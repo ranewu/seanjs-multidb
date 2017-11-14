@@ -5,7 +5,7 @@
  */
 var _ = require('lodash'),
   path = require('path'),
-  db = require(path.resolve('./config/lib/sequelize')).models,
+  db = require(path.resolve('./config/lib/sequelize-pool')).default.models,
   User = db.user;
 
 /**
