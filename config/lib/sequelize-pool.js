@@ -30,7 +30,8 @@ for (var db_name in config.files.server.models){
     logging: config.db[db_name].enableSequelizeLog ? winston.verbose : false,
     dialectOptions: {
       ssl: config.db[db_name].ssl ? config.db[db_name].ssl : false
-    }
+    },
+    define: config.db[db_name].define ? config.db[db_name].define : {}
   });
 }
 
