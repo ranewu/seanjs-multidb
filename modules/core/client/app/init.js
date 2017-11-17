@@ -12,7 +12,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
   }
 ]);
 
-angular.module(ApplicationConfiguration.applicationModuleName).run(function($rootScope, $state, Authentication) {
+angular.module(ApplicationConfiguration.applicationModuleName).run(function($rootScope, $state, $transitions, Authentication) {
 
   // Check authentication before changing state
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
@@ -38,17 +38,15 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function($roo
       }
     }
   });
-
+  
   // Record previous state
-  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-    if (!fromState.data || !fromState.data.ignoreState) {
-      $state.previous = {
-        state: fromState,
-        params: fromParams,
-        href: $state.href(fromState, fromParams)
-      };
+  $transitions.onSuccess({}, function (transition){
+    $state.previous = {
+      state: transition.from(),
+      params: transition.params('from'),
+      href: transition.from().url
     }
-  });
+  })
 });
 
 //Then define the init function for starting up the application
